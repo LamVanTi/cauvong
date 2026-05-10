@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rainbow After Rain - SHIN</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(to bottom, #1b2b52, #3f5c98, #89b7ff);
+      position: relative;
+    }
+
+    .rain {
+      position: absolute;
+      width: 2px;
+      height: 80px;
+      background: rgba(255,255,255,0.5);
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-120px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(120vh);
+        opacity: 0;
+      }
+    }
+
+    .cloud {
+      position: absolute;
+      width: 220px;
+      height: 80px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 100px;
+      filter: blur(1px);
+      animation: cloudMove 18s linear infinite;
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: '';
+      position: absolute;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+    }
+
+    .cloud::before {
+      width: 90px;
+      height: 90px;
+      top: -45px;
+      left: 35px;
+    }
+
+    .cloud::after {
+      width: 120px;
+      height: 120px;
+      top: -60px;
+      right: 30px;
+    }
+
+    @keyframes cloudMove {
+      0% {
+        transform: translateX(-300px);
+      }
+      100% {
+        transform: translateX(130vw);
+      }
+    }
+
+    .cloud1 {
+      top: 60px;
+      animation-duration: 22s;
+    }
+
+    .cloud2 {
+      top: 140px;
+      width: 180px;
+      animation-duration: 30s;
+      animation-delay: -10s;
+    }
+
+    .rainbow {
+      position: absolute;
+      bottom: -120px;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      width: 720px;
+      height: 360px;
+      border-radius: 360px 360px 0 0;
+      border-top: 20px solid #ff3b3b;
+      border-left: 20px solid #ff3b3b;
+      border-right: 20px solid #ff3b3b;
+      animation: rainbowAppear 5s ease forwards;
+      animation-delay: 5s;
+      opacity: 0;
+    }
+
+    .rainbow::before,
+    .rainbow::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 350px 350px 0 0;
+    }
+
+    .rainbow::before {
+      width: 650px;
+      height: 325px;
+      top: 18px;
+      border-top: 20px solid #ff9f1c;
+      border-left: 20px solid #ff9f1c;
+      border-right: 20px solid #ff9f1c;
+    }
+
+    .rainbow::after {
+      width: 580px;
+      height: 290px;
+      top: 36px;
+      border-top: 20px solid #ffe600;
+      border-left: 20px solid #ffe600;
+      border-right: 20px solid #ffe600;
+    }
+
+    .rainbow-inner {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 54px;
+      width: 510px;
+      height: 255px;
+      border-radius: 255px 255px 0 0;
+      border-top: 20px solid #2dff7a;
+      border-left: 20px solid #2dff7a;
+      border-right: 20px solid #2dff7a;
+    }
+
+    .rainbow-inner::before,
+    .rainbow-inner::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 250px 250px 0 0;
+    }
+
+    .rainbow-inner::before {
+      width: 440px;
+      height: 220px;
+      top: 18px;
+      border-top: 20px solid #00b7ff;
+      border-left: 20px solid #00b7ff;
+      border-right: 20px solid #00b7ff;
+    }
+
+    .rainbow-inner::after {
+      width: 370px;
+      height: 185px;
+      top: 36px;
+      border-top: 20px solid #8b5cf6;
+      border-left: 20px solid #8b5cf6;
+      border-right: 20px solid #8b5cf6;
+    }
+
+    @keyframes rainbowAppear {
+      0% {
+        transform: translateX(-50%) scale(0.2);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+      }
+    }
+
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      z-index: 10;
+      animation: fadeIn 3s ease forwards;
+    }
+
+    .content h1 {
+      font-size: 70px;
+      letter-spacing: 4px;
+      text-shadow: 0 0 25px rgba(255,255,255,0.8);
+    }
+
+    .content p {
+      margin-top: 18px;
+      font-size: 22px;
+      opacity: 0.9;
+    }
+
+    .heart {
+      font-size: 40px;
+      animation: pulse 2s infinite;
+      margin-top: 20px;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .shine {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 4s infinite ease-in-out;
+    }
+
+    @keyframes sparkle {
+      0%,100% {
+        transform: scale(0.5);
+        opacity: 0.2;
+      }
+      50% {
+        transform: scale(1.8);
+        opacity: 1;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+
+  <div class="content">
+    <h1>NGUYỄN CẨM QUỲNH</h1>
+    <p>"Sau cơn mưa, cầu vồng sẽ xuất hiện ✨"</p>
+    <div class="heart">🌈💖</div>
+    <p style="margin-top: 25px; font-size: 18px; opacity: 0.8;">
+      Dành riêng cho SHIN
+    </p>
+  </div>
+
+  <div class="rainbow">
+    <div class="rainbow-inner"></div>
+  </div>
+
+  <script>
+    // Tạo hiệu ứng mưa
+    for (let i = 0; i < 120; i++) {
+      const rain = document.createElement('div');
+      rain.classList.add('rain');
+
+      rain.style.left = Math.random() * window.innerWidth + 'px';
+      rain.style.animationDuration = (Math.random() * 1 + 0.5) + 's';
+      rain.style.opacity = Math.random();
+      rain.style.animationDelay = Math.random() * 5 + 's';
+
+      document.body.appendChild(rain);
+    }
+
+    // Tạo ánh sáng lấp lánh
+    for (let i = 0; i < 40; i++) {
+      const shine = document.createElement('div');
+      shine.classList.add('shine');
+
+      shine.style.left = Math.random() * window.innerWidth + 'px';
+      shine.style.top = Math.random() * window.innerHeight + 'px';
+      shine.style.animationDelay = Math.random() * 4 + 's';
+
+      document.body.appendChild(shine);
+    }
+
+    // Dừng mưa sau vài giây
+    setTimeout(() => {
+      document.querySelectorAll('.rain').forEach(r => {
+        r.style.animationIterationCount = '3';
+      });
+    }, 4000);
+  </script>
+
+</body>
+</html>
